@@ -1,6 +1,6 @@
 # Encoder
 
-This is a java project for a simple encoder/decoder based on the following specifications from attached pdf
+This is a java project for a simple encoder/decoder based on the following specifications from attached pdf [Encoder (New) V1.pdf]
 
 Project name: DXC encoder/decoder
 Developed using eclipse IDE
