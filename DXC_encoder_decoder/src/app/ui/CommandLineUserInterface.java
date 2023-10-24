@@ -73,6 +73,8 @@ public class CommandLineUserInterface {
 		{
 			text = this.in.nextLine();
 			
+			if (text.isEmpty()) {System.out.println("Empty string, please enter something"); continue;}
+			
 			Matcher m = p.matcher(text);
 			
 			if (m.find()) {System.out.println("Contains unacceptable character, try again"); continue;}
