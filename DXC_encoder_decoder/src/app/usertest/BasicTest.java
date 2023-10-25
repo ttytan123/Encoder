@@ -33,7 +33,7 @@ class BasicTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		example_1 = "HELLO WORLD";
+		example_1 = "HELLO WORLD"; 
 		
 		example_2 = "0123456789()*+,-./";
 		
@@ -42,6 +42,9 @@ class BasicTest {
 
 	@Test
 	void testEncode() {
+		
+		
+		//include the samples given in the handout for shift 1 and 5 for hello world 
 		
 		testEncoder = new Encoder(1);
 		
@@ -54,6 +57,8 @@ class BasicTest {
 		String encode_result_2 = testEncoder.encode(this.example_1);
 		
 		assertEquals(encode_result_2, "FC/GGJ RJMG.");
+		
+		/*-----------Others ------------------------------*/
 		
 		testEncoder = new Encoder(43);
 		
@@ -78,6 +83,8 @@ class BasicTest {
 	@Test
 	void testDecode() {
 		
+		//include the samples given in the handout for shift 1 and 5 for hello world 
+		
 		testEncoder = new Encoder(1);
 		
 		String encode_result_1 = testEncoder.decode(this.example_3);
@@ -91,6 +98,8 @@ class BasicTest {
 		String encode_result_2 = testEncoder.decode(this.example_3);
 		
 		assertEquals(encode_result_2, "HELLO WORLD");
+		
+		/*-----------Others ------------------------------*/
 		
 		testEncoder = new Encoder(43);
 		
@@ -121,6 +130,9 @@ class BasicTest {
 	
 	@Test
 	void testUI() {
+		
+		//Relative primitive way of testing by swapping system in to predetermined string
+		
 		String testInput = "1\n1\nHELLO WORLD";
 		System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 		
@@ -136,6 +148,8 @@ class BasicTest {
 		String[] result_array = result.split("\n");
 		
 		assertEquals(result_array[result_array.length-2], "BGDKKN VNQKC");
+		
+		/*If values to restore system out */
 		
 		//System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
 		
@@ -158,7 +172,33 @@ class BasicTest {
 		
 		//System.out.println(result_array_2[result_array_2.length-2]);
 		
-
+		
+		String testInput_3 = "1\n1\n0123456789()*+,-./";
+		System.setIn(new ByteArrayInputStream(testInput_3.getBytes()));
+		
+		CommandLineUserInterface testUI_3 = new CommandLineUserInterface(System.in);
+		testUI_3.start();
+		
+		String result_3 = testOut.toString();
+		
+		String[] result_array_3 = result_3.split("\n");
+		
+		assertEquals(result_array_3[result_array_3.length-2], "BZ0123456789()*+,-.");
+		
+		
+		/*To show nonsense output will be ignored...*/
+		
+		String testInput_4 = "2\n!@#!@#\\123123\nBZ0123456789()*+,-."; //have some random gibberish
+		System.setIn(new ByteArrayInputStream(testInput_4.getBytes()));
+		
+		CommandLineUserInterface testUI_4 = new CommandLineUserInterface(System.in);
+		testUI_4.start();
+		
+		String result_4 = testOut.toString();
+		
+		String[] result_array_4 = result_4.split("\n");
+		
+		assertEquals(result_array_4[result_array_4.length-2], this.example_2);
 		
 		
 		
